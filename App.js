@@ -1,20 +1,24 @@
 function updateTimelineLine() {
-    const titulo = document.querySelector('.titulo-semana');
-    const centers = document.querySelectorAll('.timeline-center');
+    const semanas = document.querySelectorAll('.semana');
 
-    if (!titulo || centers.length === 0) return;
+    semanas.forEach(semana => {
+        const titulo = semana.querySelector('.titulo-semana');
+        const centers = semana.querySelectorAll('.timeline-center');
 
-    const firstTitleBottom = titulo.getBoundingClientRect().bottom + window.scrollY;
+        if (!titulo || centers.length === 0) return;
 
-    const lastCenter = centers[centers.length - 1];
-    const lastCenterRect = lastCenter.getBoundingClientRect();
-    const lastCenterCenter = lastCenter.getBoundingClientRect().top + window.scrollY + (lastCenterRect.height / 2);
+        const semanaRect = semana.getBoundingClientRect();
+        const firstTitleBottom = titulo.getBoundingClientRect().bottom;
+        const lastCenter = centers[centers.length - 1];
+        const lastCenterRect = lastCenter.getBoundingClientRect();
+        const lastCenterCenter = lastCenterRect.top + (lastCenterRect.height / 2);
 
-    const lineStart = firstTitleBottom;
-    const lineHeight = lastCenterCenter - firstTitleBottom;
+        const lineStart = firstTitleBottom - semanaRect.top;
+        const lineHeight = lastCenterCenter - firstTitleBottom;
 
-    document.body.style.setProperty('--line-start', lineStart + 'px');
-    document.body.style.setProperty('--line-height', lineHeight + 'px');
+        semana.style.setProperty('--line-start', `${lineStart}px`);
+        semana.style.setProperty('--line-height', `${lineHeight}px`);
+    });
 }
 
 // Aguardar todas as imagens carregarem antes de calcular
