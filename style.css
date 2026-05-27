@@ -67,6 +67,16 @@ body {
     color: #efe6d8;
 }
 
+.semana {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1500px;
+}
+
 .nav {
     display: flex;
     justify-content: flex-start;
@@ -257,7 +267,7 @@ img {
     }
 
     .timeline-content {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 30px;
     }
 
